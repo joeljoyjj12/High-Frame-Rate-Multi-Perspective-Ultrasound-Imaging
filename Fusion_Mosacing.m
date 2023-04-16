@@ -8,7 +8,7 @@ Imgs_m=load('Dataset/02042023/Img_Data.mat');
 Imgs_m=Imgs_m.newImgArr;
 Imgs_m=rescale(Imgs_m);
 
-%% Preprocessing Images
+%% Padding part
 
 s1=2000;
 s2=1200;
@@ -54,6 +54,8 @@ end
 %%
 tr_rot_img_arr=rot_img_arr;
 %%
+% The user needs to manually give the translation values for each of the
+% rotated image
 for i=2:18
     user_inp=true;
     while (user_inp==true)
@@ -73,6 +75,7 @@ for i=2:18
     imshow(tr_rot_img_arr(:,:,i));
 end
 
+mosaiced_image=tr_rot_img_arr(:,:,end); % Final fused image
 %%
 function rot_img=rotate_image(img,y_c,theta)
 [m,n]=size(img);
